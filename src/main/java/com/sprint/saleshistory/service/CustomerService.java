@@ -3,17 +3,23 @@ package com.sprint.saleshistory.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.sprint.saleshistory.dao.entities.Customer;
+import com.sprint.saleshistory.entities.CustomerEntity;
 
 public interface CustomerService {
 
-    List<Customer> getAllCustomers();
+	 List<CustomerEntity> getAllCustomers();
+	    Optional<CustomerEntity> getCustomerById(int id);
+	    CustomerEntity createCustomer(CustomerEntity customer);
+	    Optional<CustomerEntity> updateCustomer(int id, CustomerEntity updatedCustomer);
 
-    Optional<Customer> getCustomerById(Long id);
-
-    Customer createCustomer(Customer customer);
-
-    Optional<Customer> updateCustomer(Long id, Customer updatedCustomer);
-
-    void deleteCustomer(Long id);
+	    void deleteCustomer(Long id);
+	    List<CustomerEntity> getCustomersByFirstName(String firstName);
+	    List<CustomerEntity> getCustomersByLastName(String lastName);
+	    List<CustomerEntity> getCustomersByCity(String city);
+	    List<CustomerEntity> getCustomersByIncome(String income);
+	    List<CustomerEntity> getCustomersByCreditLimitRange(Integer minCreditLimit, Integer maxCreditLimit);
+	    void deleteCustomer(int id);
 }
+
+
+

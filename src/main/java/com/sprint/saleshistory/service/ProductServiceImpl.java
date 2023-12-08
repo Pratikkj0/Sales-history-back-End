@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sprint.saleshistory.dao.ProductRepository;
-import com.sprint.saleshistory.dao.entities.ProductEntity;
+import com.sprint.saleshistory.entities.ProductEntity;
 import com.sprint.saleshistory.exception.DuplicateRecordException;
 import com.sprint.saleshistory.exception.EmptyListException;
 import com.sprint.saleshistory.exception.RecordNotFoundException;

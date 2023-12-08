@@ -1,4 +1,4 @@
-package com.sprint.saleshistory.dao.entities;
+package com.sprint.saleshistory.entities;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
