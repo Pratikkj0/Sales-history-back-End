@@ -41,7 +41,7 @@ import lombok.ToString;
 	    
 	    @ManyToOne
 	    @JoinColumn(name="promo_id")
-	    private PromotionsEntity promotion;
+	    private PromotionEntity promotion;
 	    
 	    @ManyToOne
 	    @JoinColumn(name="channel_id")

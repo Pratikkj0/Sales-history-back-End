@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sprint.saleshistory.dao.PromotionRepository;
-import com.sprint.saleshistory.dao.entities.PromotionEntity;
+import com.sprint.saleshistory.entities.PromotionEntity;
+
 import com.sprint.saleshistory.models.PromotionPojo;
 
 @Service
@@ -23,7 +24,7 @@ public class PromotionServiceImpl implements PromotionService {
 		
 		List<PromotionEntity> allPromotionsEntity = promotionRepository.findAll();
         List<PromotionPojo> allPromotionsPojo = new ArrayList<>();
-        for (PromotionEntity promotionEntity : allPromotionsEntity) {
+        for(PromotionEntity promotionEntity : allPromotionsEntity) {
             PromotionPojo promotionPojo = new PromotionPojo();
             BeanUtils.copyProperties(promotionEntity, promotionPojo);
             allPromotionsPojo.add(promotionPojo);
