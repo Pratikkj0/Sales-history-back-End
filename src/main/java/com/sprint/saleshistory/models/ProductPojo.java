@@ -1,12 +1,8 @@
-package com.sprint.saleshistory.dao.entities;
+package com.sprint.saleshistory.models;
 
 import java.time.LocalDate;
 
-import org.antlr.v4.runtime.misc.NotNull;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,37 +14,72 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Entity
-public class Products {
-	
-	@Id
+public class ProductPojo {
+
 	private int prodId;
-	
-	@Column(length = 50, nullable = false)
+
+	@NotNull
 	private String prodName;
+	
+	@NotNull
 	private String prodDesc;
+
+	@NotNull
 	private String prodSubcategory;
-	private int prodSubcategotyId;
+
+	
+	@NotNull
+	private int prodSubcategoryId;
+
+	@NotNull
 	private String prodSubcategoryDesc;
+
+	@NotNull
 	private String prodCategory;
+
+	@NotNull
 	private int prodCategoryId;
+
+	@NotNull
 	private String prodCategoryDesc;
+
+	@NotNull
 	private int prodWeightClass;
+	
+	
 	private String prodUnitOfMeasure;
-	
+
+	@NotNull
 	private String prodPackSize;
+
+	@NotNull
 	private int supplierId;
+
+	@NotNull
 	private String prodStatus;
+
+	@NotNull
 	private String prodListPrice;
+
+	@NotNull
 	private double ProdMinPrice;
+
+	@NotNull
 	private String prodTotal;
+
+	@NotNull
 	private int prodTotalId;
+
+	
 	private int prodSrcId;
+	
+	
 	private LocalDate prodEffFrom;
+
 	private LocalDate prodEffTo;
+
+	
+	
 	private String prodValid;
-	
-	
-	
 
 }
