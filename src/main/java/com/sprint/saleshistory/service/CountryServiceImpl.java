@@ -1,6 +1,6 @@
 package com.sprint.saleshistory.service;
 
-import com.sprint.saleshistory.dao.entities.Country;
+import com.sprint.saleshistory.entities.CountryEntity;
 
 import com.sprint.saleshistory.dao.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,18 +16,18 @@ public class CountryServiceImpl implements CountryService {
     private CountryRepository countryRepository;
 
     @Override
-    public List<Country> getAllCountries() {
+    public List<CountryEntity> getAllCountries() {
         return countryRepository.findAll();
     }
 
     @Override
-    public Country getCountryById(Long countryId) {
-        Optional<Country> optionalCountry = countryRepository.findById(countryId);
+    public CountryEntity getCountryById(Long countryId) {
+        Optional<CountryEntity> optionalCountry = countryRepository.findById(countryId);
         return optionalCountry.orElse(null);
     }
 
     @Override
-    public Country saveCountry(Country country) {
+    public CountryEntity saveCountry(CountryEntity country) {
         return countryRepository.save(country);
     }
 
