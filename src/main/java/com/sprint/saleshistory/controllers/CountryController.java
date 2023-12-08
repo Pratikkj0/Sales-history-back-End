@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sprint.saleshistory.dao.entities.Country;
+import com.sprint.saleshistory.entities.CountryEntity;
 import com.sprint.saleshistory.service.CountryService;
 
 @RestController
@@ -22,17 +22,17 @@ public class CountryController {
     private CountryService countryService;
 
     @GetMapping
-    public List<Country> getAllCountries() {
+    public List<CountryEntity> getAllCountries() {
         return countryService.getAllCountries();
     }
 
     @GetMapping("/{countryId}")
-    public Country getCountryById(@PathVariable Long countryId) {
+    public CountryEntity getCountryById(@PathVariable Long countryId) {
         return countryService.getCountryById(countryId);
     }
 
     @PostMapping
-    public Country saveCountry(@RequestBody Country country) {
+    public CountryEntity saveCountry(@RequestBody CountryEntity country) {
         return countryService.saveCountry(country);
     }
 
