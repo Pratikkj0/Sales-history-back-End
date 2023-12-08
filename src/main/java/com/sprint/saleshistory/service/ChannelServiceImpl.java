@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sprint.saleshistory.dao.ChannelRepository;
-import com.sprint.saleshistory.dao.entities.ChannelEntity;
+import com.sprint.saleshistory.entities.ChannelEntity;
 import com.sprint.saleshistory.models.ChannelPojo;
 
 @Service
