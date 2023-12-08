@@ -70,13 +70,6 @@
 <version>3.0.0</version>
 </dependency>
 
- 
-
-
- 
- 
-		
-
 </dependencies>
 
  
@@ -97,4 +90,5 @@
 </plugins>
 </build>
  
+
 </project>
