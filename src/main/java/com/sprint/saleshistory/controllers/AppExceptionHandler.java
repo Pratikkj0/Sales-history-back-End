@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -22,7 +23,6 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(DuplicateRecordException.class)
 	public ResponseEntity<String> handleDuplicateDataException(DuplicateRecordException ex) {
-
 		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.BAD_REQUEST);
 	}
 
@@ -36,15 +36,15 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
 	}
 	
-
-//	@Override
+	
+	@Override
 	public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-			HttpHeaders headers, HttpStatus status, WebRequest request) {
-		String message = ex.getBindingResult().getFieldErrors().stream().map(FieldError::getDefaultMessage)
-				.collect(Collectors.joining(", "));
-//		return new ResponseEntity<>(ex.getMessage(),status);
-		return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
-		
+			HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+		String  message = ex.getBindingResult().getFieldErrors().stream().map(FieldError::getDefaultMessage).collect(Collectors.joining("\n"));
+		return new ResponseEntity<Object>(message, HttpStatus.BAD_REQUEST);
 	}
+	
+	
+
 
 }
