@@ -1,7 +1,5 @@
 package com.sprint.saleshistory.entities;
 
-import java.sql.Date;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +11,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
+
 @AllArgsConstructor
 @NoArgsConstructor 
 
@@ -44,6 +42,7 @@ public class CountryEntity {
     private String countryTotal;
     @Column(name = "country_total_id")
     private int countryTotalId;
+    
 }
 
 

@@ -33,7 +33,7 @@ public class ProductServiceImpl implements ProductService {
 		if (allProductPojo.isEmpty())
 			throw new EmptyListException("Product list is empty!");
 		return allProductPojo;
-	}
+	} 
 
 	@Override
 	public ProductPojo getProductByProdId(int id) {

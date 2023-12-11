@@ -1,5 +1,4 @@
 package com.sprint.saleshistory.entities;
-import java.math.BigDecimal;
 import java.sql.Date;
 
 import jakarta.persistence.Column;
@@ -102,7 +101,5 @@ public class CustomerEntity {
 
 
 
-    // Getters and Setters
 
-    // You can also add other methods or annotations as needed.
 }

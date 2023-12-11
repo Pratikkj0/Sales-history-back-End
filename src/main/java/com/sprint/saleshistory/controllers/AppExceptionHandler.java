@@ -37,7 +37,13 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 	
 	
+<<<<<<< Updated upstream
 	@Override
+=======
+	
+
+//	@Override
+>>>>>>> Stashed changes
 	public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatusCode status, WebRequest request) {
 		String  message = ex.getBindingResult().getFieldErrors().stream().map(FieldError::getDefaultMessage).collect(Collectors.joining("\n"));
