@@ -31,7 +31,7 @@ public class ProductServiceImpl implements ProductService {
 			allProductPojo.add(productPojo);
 		}
 		if (allProductPojo.isEmpty())
-			throw new EmptyListException("Product list is empty");
+			throw new EmptyListException("Product list is empty!");
 		return allProductPojo;
 	}
 
@@ -39,7 +39,7 @@ public class ProductServiceImpl implements ProductService {
 	public ProductPojo getProductByProdId(int id) {
 		Optional<ProductEntity> opt = productRepository.findById(id);
 		if (!opt.isPresent())
-			throw new RecordNotFoundException("Product not found");
+			throw new RecordNotFoundException("Product not found!");
 		ProductEntity productEntity = opt.get();
 		ProductPojo productPojo = new ProductPojo();
 		BeanUtils.copyProperties(productEntity, productPojo);
@@ -69,7 +69,10 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public ProductPojo addProduct(ProductPojo newProduct) {
+		
+		System.out.println("======================"+newProduct.getProdListPrice()+"=================");
 		Optional<ProductEntity> opt = productRepository.findById(newProduct.getProdId());
+		
 		if (opt.isPresent())
 			throw new DuplicateRecordException("Product already exists.");
 		;
@@ -91,7 +94,7 @@ public class ProductServiceImpl implements ProductService {
 		}
 
 		if (allProductPojoBycategory.isEmpty())
-			throw new EmptyListException("Product list is empty");
+			throw new EmptyListException("No products found for category: " + category);
 		return allProductPojoBycategory;
 
 	}
@@ -106,50 +109,26 @@ public class ProductServiceImpl implements ProductService {
 			allProductPojoByStatus.add(productPojo);
 		}
 		if (allProductPojoByStatus.isEmpty())
-			throw new EmptyListException("Product list is empty");
-		return allProductPojoByStatus;
+			throw new EmptyListException("No products found for status: " + status);
+		return allProductPojoByStatus; 
 	}
 
 	@Override
 	public List<ProductPojo> getProductBySubcategory(String subcategory) {
-		List<ProductEntity> allProductsEntityBySubcategory = productRepository.findByProdSubcategory(subcategory);
-		List<ProductPojo> allProductPojoBySubcategory = new ArrayList<ProductPojo>();
-		for (ProductEntity productEntity : allProductsEntityBySubcategory) {
-			ProductPojo productPojo = new ProductPojo();
-			BeanUtils.copyProperties(productEntity, productPojo);
-			allProductPojoBySubcategory.add(productPojo);
-		}
-		if (allProductPojoBySubcategory.isEmpty())
-			throw new EmptyListException("Product list is empty");
-		return allProductPojoBySubcategory;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public List<ProductPojo> getProductBySupplierId(int id) {
-		List<ProductEntity> allProductsEntityBySupplierId = productRepository.findBySupplierId(id);
-		List<ProductPojo> allProductPojoBySupplierID = new ArrayList<ProductPojo>();
-		for (ProductEntity productEntity : allProductsEntityBySupplierId) {
-			ProductPojo productPojo = new ProductPojo();
-			BeanUtils.copyProperties(productEntity, productPojo);
-			allProductPojoBySupplierID.add(productPojo);
-		}
-		if (allProductPojoBySupplierID.isEmpty())
-			throw new EmptyListException("Product list is empty");
-		return allProductPojoBySupplierID;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public List<ProductPojo> getDuplicateProducts(String prodName) {
-		List<ProductEntity> allProductsEntityByProdName = productRepository.findByProdName(prodName);
-		List<ProductPojo> allProductPojoByProdName = new ArrayList<ProductPojo>();
-		for (ProductEntity productEntity : allProductsEntityByProdName) {
-			ProductPojo productPojo = new ProductPojo();
-			BeanUtils.copyProperties(productEntity, productPojo);
-			allProductPojoByProdName.add(productPojo);
-		}
-		if (allProductPojoByProdName.isEmpty())
-			throw new EmptyListException("Product list is empty");
-		return allProductPojoByProdName;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -158,19 +137,16 @@ public class ProductServiceImpl implements ProductService {
 		return null;
 	}
 
-	
 	@Override
 	public List<ProductPojo> getSoldProductByChannel() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	
 	@Override
 	public List<ProductPojo> getProductOrderByQuery() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	
+	}  
 }
+	

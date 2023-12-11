@@ -2,12 +2,16 @@ package com.sprint.saleshistory.entities;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.DecimalMin;
@@ -24,6 +28,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
+@Table(name = "products")
 public class ProductEntity {
 	
 	@Id
@@ -78,7 +83,7 @@ public class ProductEntity {
 	@Column(nullable = false)
 	@Digits(integer = 8, fraction = 2, message = "Invalid decimal format")
 	@DecimalMin(value = "0.0", inclusive = false, message = "Value must be greater than 0")
-	private BigDecimal  ProdMinPrice;
+	private BigDecimal  prodMinPrice;
 	
 	@Column(length = 13, nullable = false)
 	private String prodTotal;
@@ -99,7 +104,11 @@ public class ProductEntity {
 	@Column(length = 1)
 	private String prodValid;
 	
+	@OneToMany(mappedBy = "sales", cascade = CascadeType.ALL)
+	private List<SalesEntity> sales;
 	
+	@OneToMany(mappedBy = "costs", cascade = CascadeType.ALL)
+	private List<CostEntity> costs;
 	
 
 }
