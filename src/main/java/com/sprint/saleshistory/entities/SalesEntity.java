@@ -38,7 +38,7 @@ import lombok.ToString;
 
 		@ManyToOne
 //		@JsonBackReference
-		@JoinColumn(name="prod_id")
+		@JoinColumn(name="prodId")
 		private ProductEntity product;  
 
 		@ManyToOne(fetch=FetchType.EAGER)
