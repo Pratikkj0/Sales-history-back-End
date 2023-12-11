@@ -64,4 +64,7 @@ public class PromotionEntity {
  
 	    @Column(name = "promo_total_id", nullable = false)
 	    private int promoTotalId;
-	}
+	
+	    
+	    
+}
