@@ -1,4 +1,4 @@
-package com.sprint.saleshistory.controllers;
+package com.sprint.saleshistory.exception;
 
 import java.util.stream.Collectors;
 
