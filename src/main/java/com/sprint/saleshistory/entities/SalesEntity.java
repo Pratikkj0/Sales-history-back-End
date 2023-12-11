@@ -1,9 +1,13 @@
 package com.sprint.saleshistory.entities;
  
 import java.math.BigDecimal;
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,40 +26,51 @@ import lombok.ToString;
 	@NoArgsConstructor
 	@AllArgsConstructor
 	@Entity
-	@Table(name = "sales")
-	public class SalesEntity {
- 
-	    @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private Long id;
- 
-	    @ManyToOne
-	    @JoinColumn(name = "prod_id")
-	    private ProductEntity product;
- 
-	    @ManyToOne
-	    @JoinColumn(name = "cust_id")
-	    private CustomerEntity customer;
- 
-	    @ManyToOne
-	    @JoinColumn(name = "time_id")
-	    private TimesEntity time;
- 
-	    @ManyToOne
-	    @JoinColumn(name = "channel_id")
-	    private ChannelEntity channel;
- 
-	    @ManyToOne
-	    @JoinColumn(name = "promo_id")
-	    private PromotionEntity promotion;
-	    
-	    
-	    @Column(name = "quantity_sold")
-	    private int quantitySold;
-	    
-	    
-	    @Column(name = "amount_sold", precision = 10, scale = 2)
-	    private BigDecimal amountSold;
-	    
+	@Table(name="sales")
+	public class SalesEntity{
+		
+		
+
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		@Column(name="sales_id")
+		private int id;
+
+		@ManyToOne
+//		@JsonBackReference
+		@JoinColumn(name="prod_id")
+		private ProductEntity product;  
+
+		@ManyToOne(fetch=FetchType.EAGER)
+//		@JsonBackReference
+		@JoinColumn(name="channel_id")
+		private ChannelEntity channel;
+
+		@ManyToOne(fetch=FetchType.EAGER)
+//		@JsonBackReference
+		@JoinColumn(name="cust_id")
+		private CustomerEntity customer;
+
+		@ManyToOne(fetch=FetchType.EAGER)
+//		@JsonBackReference
+		@JoinColumn(name="promo_id")
+		private PromotionEntity promotion;
+
+		@ManyToOne(fetch=FetchType.EAGER)
+//		@JsonBackReference
+		@JoinColumn(name="time_id")
+		private TimesEntity times;
+
+		@Column(name="quantity_sold")
+		private int quantitySold;
+
+		@Column(name="amount_sold")
+		private Double amountSold;
+
+		
+		
+//		@Column(name="date_Column", nullable = false)
+//		private Date date;
+
 	    
 	}
