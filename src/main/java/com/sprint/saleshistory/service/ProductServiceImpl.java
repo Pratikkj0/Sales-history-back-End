@@ -143,10 +143,6 @@ public class ProductServiceImpl implements ProductService {
 		return null;
 	}
 
-	@Override
-	public List<ProductPojo> getProductOrderByQuery() {
-		// TODO Auto-generated method stub
-		return null;
-	}  
+	
 }
 	

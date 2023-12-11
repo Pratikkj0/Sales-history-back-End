@@ -29,9 +29,8 @@ public interface ProductService {
 	
 	
 	List<ProductPojo>getSoldProductByChannel();
-	
-	
-	List<ProductPojo>getProductOrderByQuery();
+
+
 	
 	
 }

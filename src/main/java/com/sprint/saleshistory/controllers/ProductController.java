@@ -98,7 +98,7 @@ public class ProductController {
     	List<ProductPojo> duplicateProducts = productService.getDuplicateProducts(prodName);
         return new ResponseEntity<List<ProductPojo>>(duplicateProducts, HttpStatus.OK);
     }
-
+    
     // get collection of ProductPojos using given status using request parameter
     // "status"
     @GetMapping(value = "/")

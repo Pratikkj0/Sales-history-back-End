@@ -104,11 +104,7 @@ public class ProductEntity {
 	@Column(length = 1)
 	private String prodValid;
 	
-	@OneToMany(mappedBy = "sales", cascade = CascadeType.ALL)
-	private List<SalesEntity> sales;
 	
-	@OneToMany(mappedBy = "costs", cascade = CascadeType.ALL)
-	private List<CostEntity> costs;
 	
 
 }

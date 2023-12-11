@@ -46,23 +46,23 @@ public class ProductServiceImplTest {
 	ProductEntity[] entities = new ProductEntity[] {
 			new ProductEntity(1, "Product1", "Description1", "Subcategory1", 1, "SubcategoryDesc1", "Category1", 1,
 					"CategoryDesc1", 1, "Unit", "PackSize", 1, "Sold", new BigDecimal("10.00"), new BigDecimal("5.00"),
-					"Total1", 1, 1, LocalDate.parse("2023-01-01"), LocalDate.parse("2023-12-31"), "Y", null, null),
+					"Total1", 1, 1, LocalDate.parse("2023-01-01"), LocalDate.parse("2023-12-31"), "Y"),
 			
 			new ProductEntity(2, "Product2", "Description2", "Subcategory2", 2, "SubcategoryDesc2", "Category2", 2,
 					"CategoryDesc2", 2, "Unit", "PackSize", 2, "Sold", new BigDecimal("20.00"), new BigDecimal("10.00"),
-					"Total2", 2, 2, LocalDate.parse("2023-01-01"), LocalDate.parse("2023-12-31"), "Y", null, null),
+					"Total2", 2, 2, LocalDate.parse("2023-01-01"), LocalDate.parse("2023-12-31"), "Y"),
 			
 			new ProductEntity(3, "Product3", "Description3", "Subcategory3", 3, "SubcategoryDesc3", "Category3", 3,
 					"CategoryDesc3", 3, "Unit", "PackSize", 3, "Unsold", new BigDecimal("30.00"),new BigDecimal("15.00"), 
-					"Total3", 3, 3, LocalDate.parse("2023-01-01"),LocalDate.parse("2023-12-31"), "N", null, null),
+					"Total3", 3, 3, LocalDate.parse("2023-01-01"),LocalDate.parse("2023-12-31"), "N"),
 			
 			new ProductEntity(4, "Product4", "Description4", "Subcategory4", 4, "SubcategoryDesc4", "Category4", 4,
 					"CategoryDesc4", 4, "Unit", "PackSize", 4, "Sold", new BigDecimal("40.00"), new BigDecimal("20.00"),
-					"Total4", 4, 4, LocalDate.parse("2023-01-01"), LocalDate.parse("2023-12-31"), "Y", null, null),
+					"Total4", 4, 4, LocalDate.parse("2023-01-01"), LocalDate.parse("2023-12-31"), "Y"),
 			
 			new ProductEntity(5, "Product5", "Description5", "Subcategory5", 5, "SubcategoryDesc5", "Category5", 5,
 					"CategoryDesc5", 5, "Unit", "PackSize", 5, "Sold", new BigDecimal("50.00"), new BigDecimal("25.00"),
-					"Total5", 5, 5, LocalDate.parse("2023-01-01"), LocalDate.parse("2023-12-31"), "Y", null, null)
+					"Total5", 5, 5, LocalDate.parse("2023-01-01"), LocalDate.parse("2023-12-31"), "Y")
 
 	};
 
