@@ -1,14 +1,5 @@
 package com.sprint.saleshistory.models;
 
-//import java.math.BigDecimal;
-//import java.util.Date;
-
-//import com.sprint.saleshistory.entities.ChannelEntity;
-//import com.sprint.saleshistory.entities.CustomerEntity;
-//import com.sprint.saleshistory.entities.ProductEntity;
-//import com.sprint.saleshistory.entities.PromotionEntity;
-//import com.sprint.saleshistory.entities.TimesEntity;
-
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,7 +15,6 @@ import lombok.ToString;
 @ToString
 
 public class SalesPojo {
-	
 	
 		@NotNull
 	    private int id;

@@ -27,57 +27,43 @@ import com.sprint.saleshistory.service.SalesService;
 @RestController
 @RequestMapping("api/v1/sales")
 public class SalesController {
-	
+
 	@Autowired
-    private  SalesService salesService;
+	private SalesService salesService;
 
-   
+	@GetMapping("/all")
+	public List<SalesPojo> getAllSales() {
+		return salesService.getAllSales();
+	}
 
-    @GetMapping("/all")
-    public List<SalesPojo> getAllSales() {
-        return salesService.getAllSales();
-    }
-    
-    /*@PostMapping
-    public SalesEntity createSale(@RequestBody SalesEntity sale) {
-        return salesService.createSales(sale);
-    }*/
-
-    
-    
-    @GetMapping("/date/{date}")
-    public ResponseEntity<List<SalesEntity>> getByDate(@PathVariable("date") String dateString) {
-        Date date;
-        try {
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // or your desired date format
-            date = dateFormat.parse(dateString);
-        } catch (ParseException e) {
-            throw new IllegalArgumentException("Invalid date format. Please use yyyy-MM-dd format.");
-        }
-
-        List<SalesEntity> sales = salesService.getByDate(date);
-        if (sales.isEmpty()) {
-            throw new RecordNotFoundException("Sales not found on this date: " + date);
-        }
-        return new ResponseEntity<>(sales, HttpStatus.OK);
-    }
-    
-    
-   
-	  
-    
-    @GetMapping(value = "/quarter/{calenderMonth}")
-	public ResponseEntity<List<SalesEntity>> getAllSalesByGivenMonth(@PathVariable("calenderMonth") int calendarMonth) {
-		List<SalesEntity> list = salesService.getAllSalesByQuarter(calendarMonth);
-		if (list.size() == 0) {
-			throw new RecordNotFoundException(" sales not found on this quarter " + calendarMonth);
+	@GetMapping("/date/{date}")
+	public ResponseEntity<List<SalesEntity>> getByDate(@PathVariable("date") String dateString) {
+		Date date;
+		try {
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // or your desired date format
+			date = dateFormat.parse(dateString);
+		} catch (ParseException e) {
+			throw new IllegalArgumentException("Invalid date format. Please use yyyy-MM-dd format.");
 		}
-		return new ResponseEntity<List<SalesEntity>>(list, HttpStatus.OK);
+
+		List<SalesEntity> sales = salesService.getByDate(date);
+		if (sales.isEmpty()) {
+			throw new RecordNotFoundException("Sales not found on this date: " + date);
+		}
+		return new ResponseEntity<>(sales, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/quarter/{quarter}")
+	public ResponseEntity<List<Object[]>> getAllSalesByQuarter(@PathVariable("quarter") int quarter) {
+		List<Object[]> list = salesService.getAllSalesByQuarter(quarter);
+		if (list.size() == 0) {
+			throw new RecordNotFoundException(" sales not found on this quarter " + quarter);
+		}
+		return new ResponseEntity<List<Object[]>>(list, HttpStatus.OK);
 
 	}
-    
-    
-    @GetMapping(value = "/qtys/categorywise")
+
+	@GetMapping(value = "/qtys/categorywise")
 	public ResponseEntity<List<Object[]>> getSalesQuantitySoldByCategoryWise() {
 		List<Object[]> list = salesService.getSalesQuantitySoldByCategoryWise();
 		if (list.size() == 0) {
@@ -86,65 +72,53 @@ public class SalesController {
 		return new ResponseEntity<List<Object[]>>(list, HttpStatus.OK);
 
 	}
-    
-    
-    
-    @GetMapping("/{id}")
-    public SalesEntity getSaleById(@PathVariable int id) {
+
+	@GetMapping("/{id}")
+	public SalesEntity getSaleById(@PathVariable int id) {
 		return salesService.getSaleById(id);
-  
-    }
 
-    
-     @PutMapping("/{id}")
-     public SalesEntity updateSales(@PathVariable int id, @RequestBody SalesEntity updatedSales) 
-     
-{
-  		return salesService.updateSales(id, updatedSales);
-      
-      }
-      
-    
-    
-     @GetMapping(value = "/qtys/categorywise/{year}")
- 	public ResponseEntity<List<Object[]>> getSalesQuantitySoldByCategoryWiseByYear(@PathVariable("year") int year) {
- 		List<Object[]> list = salesService.getSalesQuantitySoldByCategoryWiseByYear(year);
- 		if (list.size() == 0) {
- 			throw new RecordNotFoundException(" sales not found");
- 		}
- 		return new ResponseEntity<List<Object[]>>(list, HttpStatus.OK);
+	}
 
- 	}
-     
-     
-     @GetMapping("/sold/categorywise")
- 	public ResponseEntity<List<Object[]>> getSumOfAmountSoldForSalesByCategories() {
+	@PutMapping("/{id}")
+	public SalesEntity updateSales(@PathVariable int id, @RequestBody SalesEntity updatedSales)
 
- 		List<Object[]> list = salesService.getCategoryWiseTotalAmountSold();
- 		if (list.size() == 0) {
- 			throw new RecordNotFoundException(" sales not found ");
- 		}
- 		return new ResponseEntity<List<Object[]>>(list, HttpStatus.OK);
-     }
-     
-    
-   
-    @DeleteMapping("/{id}")
-    public void deleteSale(@PathVariable int id) {
-        salesService.deleteSale(id);
-    }    
-    
-    @GetMapping(value = "/sold/categorywise/{year}")
+	{
+		return salesService.updateSales(id, updatedSales);
+
+	}
+
+	@GetMapping(value = "/qtys/categorywise/{year}")
+	public ResponseEntity<List<Object[]>> getSalesQuantitySoldByCategoryWiseByYear(@PathVariable("year") int year) {
+		List<Object[]> list = salesService.getSalesQuantitySoldByCategoryWiseByYear(year);
+		if (list.size() == 0) {
+			throw new RecordNotFoundException(" sales not found");
+		}
+		return new ResponseEntity<List<Object[]>>(list, HttpStatus.OK);
+	}
+
+	@GetMapping("/sold/categorywise")
+	public ResponseEntity<List<Object[]>> getSumOfAmountSoldForSalesByCategories() {
+
+		List<Object[]> list = salesService.getCategoryWiseTotalAmountSold();
+		if (list.size() == 0) {
+			throw new RecordNotFoundException(" sales not found ");
+		}
+		return new ResponseEntity<List<Object[]>>(list, HttpStatus.OK);
+	}
+
+	@DeleteMapping("/{id}")
+	public void deleteSale(@PathVariable int id) {
+		salesService.deleteSale(id);
+	}
+
+	@GetMapping(value = "/sold/categorywise/{year}")
 	public ResponseEntity<List<Object[]>> getSumOfAmountSoldForSalesByCategoriesByYear(@PathVariable("year") int year) {
-    	
+
 		List<Object[]> list = salesService.getSumOfAmountSoldForSalesByCategoriesByYear(year);
 		if (list.size() == 0) {
 			throw new RecordNotFoundException("sales not found");
 		}
 		return new ResponseEntity<List<Object[]>>(list, HttpStatus.OK);
 	}
-    
-    
-    }
-    
 
+}

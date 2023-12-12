@@ -1,5 +1,5 @@
 package com.sprint.saleshistory.entities;
- 
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -19,58 +19,45 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
- 
+
 @Getter
 @Setter
 @ToString
-	@NoArgsConstructor
-	@AllArgsConstructor
-	@Entity
-	@Table(name="sales")
-	public class SalesEntity{
-		
-		
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "sales")
+public class SalesEntity {
 
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		@Column(name="sales_id")
-		private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "sales_id")
+	private int id;
 
-		@ManyToOne
-//		@JsonBackReference
-		@JoinColumn(name="prodId")
-		private ProductEntity product;  
+	@ManyToOne
+	@JoinColumn(name = "prodId")
+	private ProductEntity product;
 
-		@ManyToOne(fetch=FetchType.EAGER)
-//		@JsonBackReference
-		@JoinColumn(name="channel_id")
-		private ChannelEntity channel;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "channel_id")
+	private ChannelEntity channel;
 
-		@ManyToOne(fetch=FetchType.EAGER)
-//		@JsonBackReference
-		@JoinColumn(name="cust_id")
-		private CustomerEntity customer;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "cust_id")
+	private CustomerEntity customer;
 
-		@ManyToOne(fetch=FetchType.EAGER)
-//		@JsonBackReference
-		@JoinColumn(name="promo_id")
-		private PromotionEntity promotion;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "promo_id")
+	private PromotionEntity promotion;
 
-		@ManyToOne(fetch=FetchType.EAGER)
-//		@JsonBackReference
-		@JoinColumn(name="time_id")
-		private TimesEntity times;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "time_id")
+	private TimesEntity times;
 
-		@Column(name="quantity_sold")
-		private int quantitySold;
+	@Column(name = "quantity_sold")
+	private int quantitySold;
 
-		@Column(name="amount_sold")
-		private Double amountSold;
+	@Column(name = "amount_sold")
+	private Double amountSold;
 
-		
-		
-//		@Column(name="date_Column", nullable = false)
-//		private Date date;
-
-	    
-	}
+}
