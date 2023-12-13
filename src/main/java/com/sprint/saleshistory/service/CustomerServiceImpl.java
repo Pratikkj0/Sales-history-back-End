@@ -62,7 +62,7 @@ public class CustomerServiceImpl implements CustomerService {
 			customerRepository.deleteById((int) id);
 			return "Record deleted Successfully";
 		} else
-			throw new RuntimeException("error");
+			throw new RuntimeException("Record is Not Present To Delete");
 
 	}
 

@@ -68,4 +68,8 @@ public class CustomerController {
 		customerService.updateCreditLimit(id, CreditLimit);
 		return ResponseEntity.ok("Record updated Successfully");
 	}
+	
 }
+
+
+ 
