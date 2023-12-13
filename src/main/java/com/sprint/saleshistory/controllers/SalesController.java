@@ -57,7 +57,7 @@ public class SalesController {
 	public ResponseEntity<List<Object[]>> getAllSalesByQuarter(@PathVariable("quarter") int quarter) {
 		List<Object[]> list = salesService.getAllSalesByQuarter(quarter);
 		if (list.size() == 0) {
-			throw new RecordNotFoundException(" sales not found on this quarter " + quarter);
+			throw new RecordNotFoundException(" sales not found in this quarter month : " + quarter);
 		}
 		return new ResponseEntity<List<Object[]>>(list, HttpStatus.OK);
 
@@ -67,7 +67,7 @@ public class SalesController {
 	public ResponseEntity<List<Object[]>> getSalesQuantitySoldByCategoryWise() {
 		List<Object[]> list = salesService.getSalesQuantitySoldByCategoryWise();
 		if (list.size() == 0) {
-			throw new RecordNotFoundException(" sales not found on categorywise ");
+			throw new RecordNotFoundException(" sales not found  ");
 		}
 		return new ResponseEntity<List<Object[]>>(list, HttpStatus.OK);
 
@@ -91,7 +91,7 @@ public class SalesController {
 	public ResponseEntity<List<Object[]>> getSalesQuantitySoldByCategoryWiseByYear(@PathVariable("year") int year) {
 		List<Object[]> list = salesService.getSalesQuantitySoldByCategoryWiseByYear(year);
 		if (list.size() == 0) {
-			throw new RecordNotFoundException(" sales not found");
+			throw new RecordNotFoundException(" No sales found in the year : " + year);
 		}
 		return new ResponseEntity<List<Object[]>>(list, HttpStatus.OK);
 	}
@@ -116,7 +116,7 @@ public class SalesController {
 
 		List<Object[]> list = salesService.getSumOfAmountSoldForSalesByCategoriesByYear(year);
 		if (list.size() == 0) {
-			throw new RecordNotFoundException("sales not found");
+			throw new RecordNotFoundException("No sales sold in this " + year + " year .");
 		}
 		return new ResponseEntity<List<Object[]>>(list, HttpStatus.OK);
 	}
