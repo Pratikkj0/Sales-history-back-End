@@ -26,178 +26,112 @@ import com.sprint.saleshistory.models.TimesPojo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 
-
 @Service
 public class SalesServiceImpl implements SalesService {
-   
-//	@Autowired
-//    private  SaleRepository saleRepository;
 
 	@Autowired
-	 private  SaleRepository saleRepository;
-//	@Autowired
-//	private EntityManager entityManager;
-	
-
-   
-//	    public SalesServiceImpl(SaleRepository saleRepository) {
-//	        this.saleRepository = saleRepository;
-//	    }
-//  
-    @Override
-    public List<SalesPojo> getAllSales() {
-    	List<SalesEntity> allSalesEntity = saleRepository.findAll();
-        List<SalesPojo> allSalesPojo = new ArrayList<>();
-        for(SalesEntity salesEntity : allSalesEntity) {
-        	SalesPojo salesPojo = new SalesPojo();
-            BeanUtils.copyProperties(salesEntity, salesPojo);
-            allSalesPojo.add(salesPojo);
-        
-            ProductEntity productEntity = salesEntity.getProduct();
-            ProductPojo productPojo = new ProductPojo();
-            BeanUtils.copyProperties(productEntity, productPojo);
-            salesPojo.setProductPojo(productPojo);
-            
-            PromotionEntity promotionEntity = salesEntity.getPromotion();
-            PromotionPojo promotionPojo = new PromotionPojo();
-            BeanUtils.copyProperties(promotionEntity, promotionPojo);
-            salesPojo.setPromotionPojo(promotionPojo);   
-            
-            TimesEntity timesEntity = salesEntity.getTimes();
-            TimesPojo timesPojo = new TimesPojo();
-            BeanUtils.copyProperties(timesEntity, timesPojo);
-            salesPojo.setTimesPojo(timesPojo); 
-            
-            ChannelEntity channelEntity = salesEntity.getChannel();
-            ChannelPojo channelPojo = new ChannelPojo();
-            BeanUtils.copyProperties(channelEntity, channelPojo);
-            salesPojo.setChannelPojo(channelPojo); 
-            
-            CustomerEntity customerEntity = salesEntity.getCustomer();
-            CustomerPojo customerPojo = new CustomerPojo();
-            BeanUtils.copyProperties(customerEntity, customerPojo);
-            salesPojo.setCustomerPojo(customerPojo);
-            
-        }
-        return allSalesPojo;
-	}
-
-//    @Override
-//    public List<SalesPojo[]> getCategoryBasedCount(String prodCategory) {
-//        return saleRepository.findCategoryBasedCount(prodCategory);
-//    }
-//    @Override
-//    public List<Object[]> findCategoryBasedCount(String prodCategory) {
-//        return saleRepository.findCategoryBasedCount(prodCategory);
-//    }
-
-//    
- /*   @Override
-    public SalesPojo getSaleById(int id) {
-        Optional<SalesEntity> existingsalesOptional = saleRepository.findById(id);
-        
-        return existingsalesOptional.map(salesEntity -> {
-            SalesPojo salesPojo = new SalesPojo();
-            BeanUtils.copyProperties(salesEntity, salesPojo);
-            // Set other properties using mappings or conversion
-            
-            ProductEntity productEntity = salesEntity.getProduct();
-            ProductPojo productPojo = new ProductPojo();
-            BeanUtils.copyProperties(productEntity, productPojo);
-            salesPojo.setProductPojo(productPojo);
-            
-            PromotionEntity promotionEntity = salesEntity.getPromotion();
-            PromotionPojo promotionPojo = new PromotionPojo();
-            BeanUtils.copyProperties(promotionEntity, promotionPojo);
-            salesPojo.setPromotionPojo(promotionPojo);   
-            
-            TimesEntity timesEntity = salesEntity.getTimes();
-            TimesPojo timesPojo = new TimesPojo();
-            BeanUtils.copyProperties(timesEntity, timesPojo);
-            salesPojo.setTimesPojo(timesPojo); 
-            
-            ChannelEntity channelEntity = salesEntity.getChannel();
-            ChannelPojo channelPojo = new ChannelPojo();
-            BeanUtils.copyProperties(channelEntity, channelPojo);
-            salesPojo.setChannelPojo(channelPojo); 
-            
-            CustomerEntity customerEntity = salesEntity.getCustomer();
-            CustomerPojo customerPojo = new CustomerPojo();
-            BeanUtils.copyProperties(customerEntity, customerPojo);
-            salesPojo.setCustomerPojo(customerPojo);
-            
-            return salesPojo;
-        }).orElse(null);
-    }*/
-    
-    
-    @Override
-    public SalesEntity getSaleById(int id) {
-        Optional<SalesEntity> salesOptional = saleRepository.findById(id);
-        return salesOptional.orElse(null);
-    }
-    
-    @Override
-    public SalesEntity updateSales(int id, SalesEntity updatedSales) {
-        SalesEntity existingSales = getSaleById(id);
-
-        if (existingSales != null) {
-            // Update the existing sales entity with the new information
-            // You might want to add more specific update logic here based on your requirements
-            existingSales.setQuantitySold(updatedSales.getQuantitySold());
-            existingSales.setAmountSold(updatedSales.getAmountSold());
-
-            return saleRepository.save(existingSales);
-        }
-
-        return null; // Return null or handle as appropriate if the entity doesn't exist
-    }
-
-	  @Override
-	    public void deleteSale(int id) {
-	        
-	        Optional<SalesEntity> existingSalesOptional = saleRepository.findById(id);
-
-	        if (existingSalesOptional.isPresent()) {
-	        	saleRepository.deleteById(id);
-	        } else {
-	            System.out.println("Promotion with ID " + id + " not found. Unable to delete.");
-	        }
-	        
-	    }
-
-	 @Override
-	 public List<SalesEntity> getByDate(Date date) {
-			return saleRepository.findByDate(date);
-		}
+	private SaleRepository saleRepository;
 
 	@Override
-	public List<SalesEntity> getAllSalesByQuarter(int quarter) {
+	public List<SalesPojo> getAllSales() {
+		List<SalesEntity> allSalesEntity = saleRepository.findAll();
+		List<SalesPojo> allSalesPojo = new ArrayList<>();
+		for (SalesEntity salesEntity : allSalesEntity) {
+			SalesPojo salesPojo = new SalesPojo();
+			BeanUtils.copyProperties(salesEntity, salesPojo);
+			allSalesPojo.add(salesPojo);
+
+			ProductEntity productEntity = salesEntity.getProduct();
+			ProductPojo productPojo = new ProductPojo();
+			BeanUtils.copyProperties(productEntity, productPojo);
+			salesPojo.setProductPojo(productPojo);
+
+			PromotionEntity promotionEntity = salesEntity.getPromotion();
+			PromotionPojo promotionPojo = new PromotionPojo();
+			BeanUtils.copyProperties(promotionEntity, promotionPojo);
+			salesPojo.setPromotionPojo(promotionPojo);
+
+			TimesEntity timesEntity = salesEntity.getTimes();
+			TimesPojo timesPojo = new TimesPojo();
+			BeanUtils.copyProperties(timesEntity, timesPojo);
+			salesPojo.setTimesPojo(timesPojo);
+
+			ChannelEntity channelEntity = salesEntity.getChannel();
+			ChannelPojo channelPojo = new ChannelPojo();
+			BeanUtils.copyProperties(channelEntity, channelPojo);
+			salesPojo.setChannelPojo(channelPojo);
+
+			CustomerEntity customerEntity = salesEntity.getCustomer();
+			CustomerPojo customerPojo = new CustomerPojo();
+			BeanUtils.copyProperties(customerEntity, customerPojo);
+			salesPojo.setCustomerPojo(customerPojo);
+
+		}
+		return allSalesPojo;
+	}
+
+	@Override
+	public SalesEntity getSaleById(int id) {
+		Optional<SalesEntity> salesOptional = saleRepository.findById(id);
+		return salesOptional.orElse(null);
+	}
+
+	@Override
+	public SalesEntity updateSales(int id, SalesEntity updatedSales) {
+		SalesEntity existingSales = getSaleById(id);
+
+		if (existingSales != null) {
+			// Update the existing sales entity with the new information
+			existingSales.setQuantitySold(updatedSales.getQuantitySold());
+			existingSales.setAmountSold(updatedSales.getAmountSold());
+
+			return saleRepository.save(existingSales);
+		}
+		return null; // Return null or handle as appropriate if the entity doesn't exist
+	}
+
+	@Override
+	public void deleteSale(int id) {
+		Optional<SalesEntity> existingSalesOptional = saleRepository.findById(id);
+
+		if (existingSalesOptional.isPresent()) {
+			saleRepository.deleteById(id);
+		} else {
+			System.out.println("Promotion with ID " + id + " not found. Unable to delete.");
+		}
+
+	}
+
+	@Override
+	public List<SalesEntity> getByDate(Date date) {
+		return saleRepository.findByDate(date);
+	}
+
+	@Override
+	public List<Object[]> getAllSalesByQuarter(int quarter) {
 		return saleRepository.findAllSalesByQuarter(quarter);
 	}
-	
-
-
 
 	@Override
 	public List<Object[]> getSalesQuantitySoldByCategoryWise() {
 		return saleRepository.getCategoryBasedCount();
 	}
-	
+
 	@Override
 	public List<Object[]> getSalesQuantitySoldByCategoryWiseByYear(int year) {
 		return saleRepository.findSalesQuantitySoldByCategoryWiseByYear(year);
 
 	}
 
-	
+	@Override
 	public List<Object[]> getCategoryWiseTotalAmountSold() {
 		return saleRepository.getCategoryWiseTotalAmountSold();
 
 	}
-	
+
+	@Override
 	public List<Object[]> getSumOfAmountSoldForSalesByCategoriesByYear(int year) {
 		return saleRepository.findSumOfAmountSoldForSalesByCategoriesByYear(year);
 	}
-	
-    }
+
+}

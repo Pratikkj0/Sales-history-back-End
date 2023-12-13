@@ -25,24 +25,5 @@ public class TimesController {
         return timesService.getAllTimes();
     }
 
-//    @GetMapping("/{timeId}")
-//    public TimesPojo getTimesById(@PathVariable("timeId") Date timeId) {
-//        return timesService.getTimesByTimeId(timeId);
-//    }
-//
-//    @PostMapping("/create")
-//    public TimesPojo createTimes(@RequestBody TimesPojo times) {
-//        return timesService.createTimes(times);
-//    }
-//
-//    @PutMapping("/{timeId}")
-//    public TimesPojo updateTimes(@PathVariable("timeId") Date timeId, @RequestBody TimesPojo times) {
-//        return timesService.updateTimes(timeId, times);
-//    }
-//
-//    @DeleteMapping("/{timeId}")
-//    public void deleteTimes(@PathVariable("timeId") Date timeId) {
-//        timesService.deleteTimes(timeId);
-//    }
-//}
+
 }
