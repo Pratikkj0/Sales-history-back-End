@@ -7,7 +7,6 @@ import com.sprint.saleshistory.models.SalesPojo;
 import java.util.Date;
 import java.util.List;
 
-//import org.springframework.data.repository.query.Param;
 
 public interface SalesService {
 	List<SalesPojo> getAllSales();

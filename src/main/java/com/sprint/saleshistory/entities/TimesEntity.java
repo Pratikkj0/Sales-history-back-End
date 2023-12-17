@@ -9,6 +9,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,8 +22,7 @@ import lombok.Setter;
 @Table(name = "times")
 public class TimesEntity {
 	@Id
-	// @GeneratedValue(strategy = GenerationType.IDENTITY) -- WE ARE COMMENTING THIS
-	// BECAUSE DATE IS NOT AUTO INCREMENTED
+	@Temporal(TemporalType.DATE)
 	@Column(name = "time_id")
 	private Date timeId;
 
