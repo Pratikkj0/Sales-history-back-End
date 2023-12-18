@@ -22,26 +22,27 @@ import lombok.Setter;
 @Table(name = "countries")
  
 public class CountryEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "country_id")
-    private int countryId;
-    @Column(name = "country_iso_code", length = 2, nullable = false)
-    private String countryIsoCode;
-    @Column(name = "country_name", length = 40, nullable = false)
-    private String countryName;
-    @Column(name = "country_subregion", length = 30)
-    private String countrySubregion;
-    @Column(name = "country_subregion_id")
-    private int countrySubregionId;
-    @Column(name = "country_region", length = 40)
-    private String countryRegion;
-    @Column(name = "country_region_id")
-    private int countryRegionId;
-    @Column(name = "country_total", length = 11)
-    private String countryTotal;
-    @Column(name = "country_total_id")
-    private int countryTotalId;
+	  @Id
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    @Column(name = "country_id")
+	    private int countryId;
+	    @Column(name = "country_iso_code")
+	    private String countryIsoCode;
+	    @Column(name = "country_name") 
+	    private String countryName;
+	    @Column(name = "country_subregion")
+	    private String countrySubregion;
+	    @Column(name = "country_subregion_id")
+	    private  String countrySubregionId;
+	    @Column(name = "country_region")
+	    private String countryRegion;
+	    @Column(name = "country_region_id")
+	    private String countryRegionId;
+	    @Column(name = "country_total")
+	    private String countryTotal;
+	    @Column(name = "country_total_id")
+	    private String countryTotalId;
+		
     
 }
 
