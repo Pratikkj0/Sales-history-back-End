@@ -1,74 +1,75 @@
 package com.sprint.saleshistory.controllers;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.sprint.saleshistory.entities.CustomerEntity;
+import com.sprint.saleshistory.models.CustomerPojo;
 import com.sprint.saleshistory.service.CustomerService;
 
 @RestController
 @RequestMapping("/api/v1/customers")
 public class CustomerController {
 
-    @Autowired
-    CustomerService customerService;
+	@Autowired
+	CustomerService customerService;
 
-    @GetMapping
-    public List<CustomerEntity> getAllCustomers() {
-        return customerService.getAllCustomers();
-    }
+	@GetMapping
+	public List<CustomerPojo> getAllCustomers() {
+		return customerService.getAllCustomers();
+	}
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CustomerEntity> getCustomerById(@PathVariable int id) {
-        Optional<CustomerEntity> customer = customerService.getCustomerById(id);
-        return customer.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
+	@PostMapping
+	public String createCustomer(@RequestBody CustomerPojo customer) {
+		this.customerService.createCustomer(customer);
+		return "Record Created Successfully";
+	}
 
-    @PostMapping
-    public ResponseEntity<CustomerEntity> createCustomer(@RequestBody CustomerEntity customer) {
-        CustomerEntity createdCustomer = customerService.createCustomer(customer);
-        return new ResponseEntity<>(createdCustomer, HttpStatus.CREATED);
-    }
+	@PutMapping("/update")
+	public String updateCustomer(long id, CustomerPojo customer) {
 
-    @PutMapping("/{id}")
-    public ResponseEntity<CustomerEntity> updateCustomer(@PathVariable int id, @RequestBody CustomerEntity updatedCustomer) {
-        Optional<CustomerEntity> customer = customerService.updateCustomer(id, updatedCustomer);
-        return customer.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
+		customerService.updateCustomer(id, customer);
+		return "Record Updated Succesfully";
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCustomer(@PathVariable int id) {
-        customerService.deleteCustomer(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
+	}
 
-    @GetMapping("/firstname/{firstName}")
-    public List<CustomerEntity> getCustomersByFirstName(@PathVariable String firstName) {
-        return customerService.getCustomersByFirstName(firstName);
-    }
+	@DeleteMapping("/{id}")
+	public String deleteCustomer(@PathVariable("id") Long id) {
+		customerService.deleteCustomer(id);
+		new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return "Record deleted Successfully";
+	}
 
-    @GetMapping("/city/{city}")
-    public List<CustomerEntity> getCustomersByCity(@PathVariable String city) {
-        return customerService.getCustomersByCity(city);
-    }
+	@GetMapping("/{firstName}")
+	public List<CustomerPojo> getCustomersByFirstName(@PathVariable("firstName") String firstName) {
+		return customerService.getCustomersByFirstName(firstName);
+	}
 
-    @GetMapping("/income/{income}")
-    public List<CustomerEntity> getCustomersByIncome(@PathVariable String income) {
-        return customerService.getCustomersByIncome(income);
-    }
+	@GetMapping("/city/{city}")
+	public List<CustomerPojo> getCustomersByCity(@PathVariable String city) {
+		return customerService.getCustomersByCity(city);
+	}
 
-    @GetMapping("/limit/{minCreditLimit}/{maxCreditLimit}")
-    public List<CustomerEntity> getCustomersByCreditLimitRange(@PathVariable Integer minCreditLimit,
-                                                         @PathVariable Integer maxCreditLimit) {
-        return customerService.getCustomersByCreditLimitRange(minCreditLimit, maxCreditLimit);
-    }
+	@GetMapping("/income/{income}")
+	public List<CustomerPojo> getCustomersByIncome(@PathVariable String income) {
+		return customerService.getCustomersByIncome(income);
+	}
+
+	@GetMapping("/limit/{CreditLimit}")
+	public List<CustomerPojo> getCustomersByCreditLimit(@PathVariable Integer CreditLimit) {
+		return customerService.getCustomersByCreditLimit(CreditLimit);
+	}
+
+	@PutMapping("cd/{id}/{CreditLimit}")
+	public ResponseEntity<String> updateCreditLimit(@PathVariable("id") int id,
+			@PathVariable("CreditLimit") int CreditLimit) {
+		customerService.updateCreditLimit(id, CreditLimit);
+		return ResponseEntity.ok("Record updated Successfully");
+	}
+	
 }
 
 
+ 

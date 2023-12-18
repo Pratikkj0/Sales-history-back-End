@@ -1,13 +1,10 @@
 package com.sprint.saleshistory.models;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 import com.sprint.saleshistory.entities.CountryEntity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +19,7 @@ import lombok.ToString;
 @ToString
 public class CustomerPojo {
 
-	 private Long customerId;
+	 	private long customerId;
 	    private String firstName;
 	    private String lastName;
 	    private char gender;

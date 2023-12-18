@@ -12,5 +12,5 @@ import lombok.Setter;
 public class EmptyListException extends RuntimeException{
 	
 	private String message;
-
+	
 }

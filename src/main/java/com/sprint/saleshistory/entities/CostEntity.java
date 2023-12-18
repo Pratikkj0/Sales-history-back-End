@@ -46,9 +46,6 @@ import lombok.ToString;
 	    @ManyToOne
 	    @JoinColumn(name="channel_id")
 	    private ChannelEntity channel;
-
-	   
-
  
 	    @Column(name = "unit_cost", nullable = false)
 	    private BigDecimal unitCost;

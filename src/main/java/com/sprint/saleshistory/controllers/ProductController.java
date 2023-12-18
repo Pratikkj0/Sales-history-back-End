@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sprint.saleshistory.models.ChannelWiseSoldCustomResponse;
 import com.sprint.saleshistory.models.ProductPojo;
 import com.sprint.saleshistory.service.ProductService;
 
@@ -78,50 +79,41 @@ public class ProductController {
         return new ResponseEntity<List<ProductPojo>>(productsByStatus, HttpStatus.OK);
 
     }
-
-    // get collection of ProductPojos using given subCategory
-    @GetMapping(value = "subcategory/{subcategory}")
-    public ResponseEntity<List<ProductPojo>> getProductPojosBySubCategory(@PathVariable String subcategory) {
-    	List<ProductPojo> productsBySubcategory = productService.getProductBySubcategory(subcategory);
-        return new ResponseEntity<List<ProductPojo>>(productsBySubcategory, HttpStatus.OK);
-
-    }
-
-    // get collection of ProductPojos using given supplierId
-    @GetMapping(value = "supplierid/{supplierid}")
-    public ResponseEntity<List<ProductPojo>> getProductPojosBySupplierId(@PathVariable int supplierId) {
-    	List<ProductPojo> productsBySupplierId = productService.getProductBySupplierId(supplierId);
-        return new ResponseEntity<List<ProductPojo>>(productsBySupplierId, HttpStatus.OK);
-
-    }
-
-    // get collection of ProductPojos using given duplicates
-    @GetMapping(value = "duplicates/{prodName}")
-    public ResponseEntity<List<ProductPojo>> getProductPojosByDuplicates(@PathVariable String prodName) {
-    	List<ProductPojo> duplicateProducts = productService.getDuplicateProducts(prodName);
-        return new ResponseEntity<List<ProductPojo>>(duplicateProducts, HttpStatus.OK);
-    }
     
-    // get collection of ProductPojos using given status using request parameter
-    // "status"
-    @GetMapping(value = "/")
-    public ResponseEntity<List<ProductPojo>> getListOfSoldProductPojosByStatus(@RequestParam(name = "status") String status) {
-        // return ProductPojo collection
-        return null;
+ // http://localhost:8080/api/v1/products/subcategory/{subcategory}
+    @GetMapping("/subcategory/{subcategory}")
+    public ResponseEntity<List<ProductPojo>> getProductsBySubcategory(@PathVariable String subcategory) {
+        List<ProductPojo> products = productService.getProductsBySubcategory(subcategory);
+        return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
-    // get collection of ProductPojos using given status using request parameter "field"
-    @GetMapping("/field")
-    public ResponseEntity<List<ProductPojo>> getListOfSoldProductPojosByField(@RequestParam(name = "field") String field) {
-        // return ProductPojo collection
-        return null;
+//   http://localhost:8080/api/v1/products/supplier/{supplierid}
+    @GetMapping("/supplier/{supplierId}")
+    public ResponseEntity<List<ProductPojo>> getProductsBySupplierId(@PathVariable int supplierId) {
+        List<ProductPojo> products = productService.getProductsBySupplierId(supplierId);
+        return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
-    // get collection of ProductPojos using given status using request parameter "field"
-    @GetMapping(value = "/sort")
-    public ResponseEntity<List<ProductPojo>> getProductPojosSortedByField(@RequestParam(name = "field") String field) {
-        // return ProductPojo collection
-        return null;
+ // http://localhost:8080/api/v1/products/duplicates
+	@GetMapping("/duplicates")
+	public ResponseEntity<List<ProductPojo>> findDuplicateProducts() {
+		List<ProductPojo> duplicateProducts = productService.findDuplicateProducts();
+		return new ResponseEntity<>(duplicateProducts, HttpStatus.OK);
+	}
+
+//	http://localhost:8080/api/v1/products/status?status=value
+		@GetMapping("/status")
+		public ResponseEntity<List<ProductPojo>> getProductByStatusValue(@RequestParam("status") String status) {
+			List<ProductPojo> products = productService.getProductByStatus(status);
+			return new ResponseEntity<>(products, HttpStatus.OK);
+		}
+	
+
+   // http://localhost:8080/api/v1/products/sort?field=value
+    @GetMapping("/sort")
+    public ResponseEntity<List<ProductPojo>> findProductsOrderByField(@RequestParam("field") String field) {
+        List<ProductPojo> products = productService.findProductsOrderByField(field);
+        return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
 }
