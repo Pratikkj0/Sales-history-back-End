@@ -3,6 +3,10 @@ package com.sprint.saleshistory.entities;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import java.util.Date;
+import java.util.List;
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,6 +36,49 @@ public class ProductEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int prodId;
+
+	
+	private String prodName;
+	
+	private String prodDesc;
+	
+	private String prodSubcategory;
+	
+	private int prodSubcategoryId;
+	
+	private String prodSubcategoryDesc;
+	
+	private String prodCategory;
+	
+	private int prodCategoryId;
+	
+	private String prodCategoryDesc;
+	
+	private int prodWeightClass;
+	
+	private String prodUnitOfMeasure;
+	
+	private String prodPackSize;
+	
+	private int supplierId;
+	
+	private String prodStatus;
+	
+	private BigDecimal prodListPrice;
+	
+	private BigDecimal  prodMinPrice;
+	
+	private String prodTotal;
+	
+	private int prodTotalId;
+	
+	private int prodSrcId;
+	
+	private LocalDate prodEffFrom;
+	
+	private LocalDate prodEffTo;
+	
+ 
 
 	@Column(length = 50, nullable = false)
 	private String prodName;
@@ -97,6 +144,7 @@ public class ProductEntity {
 	private LocalDate prodEffTo;
 
 	@Column(length = 1)
+ 
 	private String prodValid;
 
 }
