@@ -99,7 +99,6 @@ public class SalesServiceImpl implements SalesService {
 		} else {
 			System.out.println("Promotion with ID " + id + " not found. Unable to delete.");
 		}
-
 	}
 
 	@Override
